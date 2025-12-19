@@ -468,7 +468,9 @@ cycle_t *queue = NULL;
 int main()
 {
 	//	int ret = 0;
-		char *error = NULL;
+	cache = (NT_SYNC_CACHE*)malloc(sizeof(NT_SYNC_CACHE));
+	memset(cache, 0, sizeof(NT_SYNC_CACHE));
+	char *error = NULL;
 #if 0
 
 	if (SUCCEED != nt_locks_create(&error))
@@ -506,11 +508,13 @@ int main()
 //	nt_mem_info_t *sync_mem = NULL;
 //	nt_mem_malloc(&mem, );
 #endif
+#if 0
 
 	init_nt_map(&error);
 	init_cache(&error);
 //	init_sync_cache(error);
 	return 0;
+#endif
 	init_cache(&error);
 
 	init_sync_cache(&error);
@@ -518,15 +522,16 @@ int main()
 	p = (char*)malloc(128);
 	memset(p, 0, 128);
 	snprintf(p, 128, "%s", "phytune_v1.7.0");
-//	nt_hashset_insert_kv(&(cache->sync_items), "127.0.0.1", (void*)(p), 128);
-//	void* pp = nt_hashset_get_kv(&(cache->sync_items), "127.0.0.1");
+	nt_hashset_insert_kv(&(cache->sync_items), "127.0.0.1", (void*)(p), 128);
+	void* pp = nt_hashset_get_kv(&(cache->sync_items), "127.0.0.1");
+	printf("%s\n", (char*)pp);	
 //	nt_hashset_insert_kv(&(cache->sync_items), p, 128);
 	nt_hashmap_set_ext(&(cache->sync_hmap), p, 1);
 	nt_uint64_t ad = nt_hashmap_get_ext(&(cache->sync_hmap), p);
 	printf("%lu\n", ad);
 	char* ppp = (char*)ad;
-//	printf("%s\n", (char*)ppp);
-	printf("%d\n", *((int*)ppp));
+	printf("%s\n", (char*)ppp);
+//	printf("%d\n", *((int*)ppp));
 	free((char*)ad);
 	return 0;
 }

@@ -492,6 +492,7 @@ void	*nt_hashset_insert_inner_kv(nt_hashset_t *hs, const char *key, const void* 
 void* nt_hashset_insert_kv(nt_hashset_t *hs, const char* key, const void *val, size_t size)
 {
     nt_hashset_kv_t* kv_entry = NULL;
+	kv_entry = (nt_hashset_kv_t*)malloc(sizeof(nt_hashset_kv_t));
     memset(kv_entry, 0, sizeof(nt_hashset_kv_t));
     kv_entry->key = strdup(key);
 
