@@ -6,6 +6,7 @@
 #include "nt_mutexs.h"
 #include "nt_socket.h"
 #include "nt_pthreads.h"
+#include "hashset.h"
 #include <stdbool.h>
 
 const char	*progname = NULL;
